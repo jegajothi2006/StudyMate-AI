@@ -1,148 +1,286 @@
-# StudyMate AI
+# StudyMate AI 🎓
 
-An AI-powered student utility application built as the **ShadowFox AI Engineer Internship – Beginner Level Task 1**.
+**StudyMate AI** is an AI-powered student productivity application developed using Python and Streamlit as part of the **ShadowFox AI Engineer Internship – Beginner Level, Task 1**.
 
-## Project Description
+The application uses the Google Gemini API to help students with common academic tasks, including summarizing notes, understanding concepts, generating quizzes, and improving written answers.
 
-StudyMate AI is a simple, practical Streamlit web app that uses an LLM (Large Language Model) API to help students with everyday study tasks. Instead of being a generic chatbot, it offers four focused, purpose-built utilities, each with its own carefully structured prompt.
+---
 
-## Problem Statement
+## 📌 Project Overview
 
-Students often spend a lot of time on repetitive study tasks: condensing long notes, understanding a confusing concept, creating practice questions, and polishing written answers before submission. StudyMate AI speeds up these specific tasks using AI, without requiring the student to write or manage prompts themselves.
+Students often spend considerable time summarizing lengthy notes, understanding difficult concepts, preparing for tests, and improving written answers.
 
-## Features
+StudyMate AI provides four focused AI-powered utilities in a simple, user-friendly web application. It helps students complete these tasks more efficiently without requiring them to write their own AI prompts.
 
-1. **Summarize Notes** – Paste raw notes and receive a concise, structured summary.
-2. **Explain a Concept** – Enter any concept or question and get a simple, student-friendly explanation with an example.
-3. **Generate Quiz** – Enter a topic or study material and receive 5 multiple-choice questions (4 options each) with a separate answer key.
-4. **Improve My Answer** – Paste a written answer and get an improved version (better grammar, clarity, and structure) plus feedback, without losing the original idea.
+## 🎯 Objectives
 
-## Technologies Used
+- Simplify everyday academic tasks using AI.
+- Help students understand complex concepts through clear explanations.
+- Generate practice quizzes for self-assessment.
+- Improve the grammar, clarity, and structure of written answers.
+- Demonstrate the practical use of Python, Streamlit, prompt engineering, and the Google Gemini API.
 
-- **Python 3**
-- **Streamlit** – for the web interface
-- **OpenAI API** – the LLM used to generate responses (model configurable via `LLM_MODEL`, default `gpt-4o-mini`)
-- **python-dotenv** – for loading the API key from a local `.env` file
+---
 
-No frameworks like LangChain, no vector databases, no agents, and no backend server are used. This is intentionally a simple, single-app project.
+## ✨ Features
 
-## How the Application Works
+### 1. Summarize Notes
+Converts lengthy study notes into concise, structured summaries. This helps students review important information more efficiently.
 
-1. The user opens the Streamlit app and selects a utility from the sidebar (Summarize Notes, Explain a Concept, Generate Quiz, or Improve My Answer).
-2. The user types or pastes their input into a text box.
-3. When the user clicks the action button, the app first **validates** the input (checks it isn't empty or too short).
-4. If valid, the app builds a **task-specific prompt** (from `prompts.py`) using the user's input.
-5. The prompt is sent to the OpenAI API via `client.chat.completions.create(...)`.
-6. While waiting, a loading spinner is shown.
-7. The AI's response is displayed in the main panel in readable Markdown format.
-8. If anything goes wrong (missing key, bad key, network issue, rate limit), a clear error message is shown instead of a crash or raw traceback.
+### 2. Explain a Concept
+Provides simple, student-friendly explanations of difficult concepts, along with examples to support understanding.
 
-## Project Structure
+### 3. Generate Quiz
+Creates **5 multiple-choice questions (MCQs)** based on a given topic or study material. Each question includes four options and a separate answer key.
 
-```
+### 4. Improve My Answer
+Improves a student's written answer by correcting grammar and enhancing clarity and structure while preserving the original meaning. It also provides feedback on the answer.
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python 3 | Core programming language |
+| Streamlit | Web application interface |
+| Google Gemini API | Generates AI-powered responses |
+| python-dotenv | Loads environment variables from a local `.env` file |
+| Git and GitHub | Version control and project hosting |
+
+---
+
+## 🏗️ Project Structure
+
+```text
 StudyMate-AI/
 │
-├── app.py            # Main Streamlit application (UI, validation, API calls)
-├── prompts.py         # Structured prompt-builder functions, one per utility
-├── requirements.txt   # Python dependencies
-├── .env.example        # Template showing which environment variables are needed
-├── .env                # Your real API key (create this yourself, never committed)
-├── .gitignore          # Ensures .env and other local files are not committed
-└── README.md
+├── app.py              # Main Streamlit application
+├── prompts.py          # Prompt-building functions for each utility
+├── requirements.txt    # Required Python packages
+├── .env.example        # Example environment configuration
+├── .gitignore          # Excludes sensitive and unnecessary files
+└── README.md           # Project documentation
 ```
 
-## Installation Steps
+**Note:** The actual `.env` file containing your API key should be created locally. It should never be uploaded to GitHub.
 
-1. Clone or download this project folder.
-2. Create a virtual environment and activate it (see commands below).
-3. Install the dependencies from `requirements.txt`.
-4. Create a `.env` file with your API key (see next section).
-5. Run the app with Streamlit.
+---
 
-## Environment Variable / API Key Setup
+## ⚙️ How It Works
 
-The app reads your API key from an environment variable called `LLM_API_KEY`.
+1. The user opens the StudyMate AI application.
+2. The user selects one of the four utilities from the sidebar.
+3. The user enters or pastes the required text or topic.
+4. The application validates the input to ensure it is suitable for processing.
+5. A task-specific prompt is generated using functions defined in `prompts.py`.
+6. The prompt is sent to the Google Gemini API using the configured model.
+7. The application displays the generated response in a readable format.
+8. If an error occurs, the application displays a user-friendly error message.
 
-1. Copy `.env.example` to a new file named `.env`.
-2. Open `.env` and replace the placeholder with your real OpenAI API key:
+---
 
+## 🚀 Installation and Setup
+
+Follow these steps to run StudyMate AI on your local machine.
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Python 3
+- pip
+- Git (optional, for cloning the repository)
+- A Google Gemini API key
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/jegajothi2006/StudyMate-AI.git
 ```
-LLM_API_KEY=your_actual_api_key_here
+
+Navigate to the project directory:
+
+```bash
+cd StudyMate-AI
 ```
 
-3. (Optional) Set `LLM_MODEL` in `.env` if you want to use a different model than the default `gpt-4o-mini`.
+Alternatively, download the repository as a ZIP file and extract it.
 
-The API key is **never** hard-coded in the source code — it is loaded at runtime using `python-dotenv`.
+### 2. Create a Virtual Environment
 
-## How to Run the Application
-
-### 1. Create a virtual environment
 ```bash
 python -m venv venv
 ```
 
-### 2. Activate it (Windows)
+### 3. Activate the Virtual Environment
+
+**Windows:**
+
 ```bash
 venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+**macOS/Linux:**
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+Install the required packages:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Create and configure `.env`
+### 5. Configure the API Key
+
+Create a `.env` file in the project directory.
+
+You can copy the example file on Windows:
+
 ```bash
 copy .env.example .env
 ```
-Then open `.env` in a text editor and paste in your real API key.
 
-### 5. Run the Streamlit application
+Open the `.env` file and add your Google Gemini API key:
+
+```env
+LLM_API_KEY=your_gemini_api_key_here
+LLM_MODEL=gemini-3.5-flash-lite
+```
+
+Replace `your_gemini_api_key_here` with your actual API key.
+
+**Important:** Keep your API key private. Never commit or upload your `.env` file to GitHub.
+
+### 6. Run the Application
+
+Start the Streamlit application:
+
 ```bash
 streamlit run app.py
 ```
 
-The app will open automatically in your browser (usually at `http://localhost:8501`).
+The application will open in your default browser. If it does not, open:
 
-## Example Usage
+```text
+http://localhost:8501
+```
 
-**Explain a Concept**
-- Input: `What is recursion in programming?`
-- Output: A simple explanation of recursion with a small example (like calculating factorial), written in plain language.
+---
 
-**Generate Quiz**
-- Input: `Photosynthesis`
-- Output: 5 multiple-choice questions about photosynthesis, each with 4 options, followed by an answer key (e.g. "1. B").
+## 💡 Example Usage
 
-## Error Handling
+### Example 1: Explain a Concept
 
-The app handles the following situations gracefully, without crashing:
+**Input:**
 
-- **Empty input** – Shows "Please enter some content before submitting." and does not call the API.
-- **Very short input** – Shows a message asking for more content, based on a minimum character length per utility.
-- **Missing/invalid API key** – Shows a clear authentication error message.
-- **Network/connection failure** – Shows a message asking the user to check their internet connection.
-- **Rate limit reached** – Shows a message asking the user to wait and try again.
-- **Unexpected API errors** – Caught and shown as a generic friendly error rather than a Python traceback.
+```text
+What is recursion in programming?
+```
 
-## Prompt Engineering Approach
+**Expected Output:**
 
-Each utility has its own dedicated prompt-building function in `prompts.py` (not one generic prompt reused for everything). Every prompt explicitly defines:
+A simple explanation of recursion, describing how a function calls itself, along with an example such as calculating a factorial.
 
-- **Role** – what kind of assistant the AI should act as (e.g. "study assistant", "tutor", "writing coach").
-- **Task** – exactly what to do with the input.
-- **User input** – the student's actual content, clearly delimited.
-- **Expected output/format** – for example, the quiz prompt requires exactly 5 questions, 4 options each, and a separate answer key in a fixed format; the "Improve My Answer" prompt requires an "Improved Answer" section followed by a "Feedback" section.
+### Example 2: Generate Quiz
 
-This keeps the AI's output consistent and predictable for each feature, rather than relying on one-size-fits-all instructions.
+**Input:**
 
-## Future Improvements
+```text
+Photosynthesis
+```
 
-- Add the ability to upload a text file or PDF of notes instead of only pasting text.
-- Allow the user to choose quiz difficulty or number of questions.
-- Add a history/download option so students can save previous summaries or quizzes.
-- Add support for switching between multiple LLM providers.
+**Expected Output:**
 
-## Notes on Scope
+Five multiple-choice questions about photosynthesis, each with four options, followed by a separate answer key.
 
-This is intentionally a **beginner-level** project built for ShadowFox Task 1. It does not use RAG, LangChain, agents, vector databases, or any backend/database beyond the LLM API call itself, in line with the task requirements.
+---
+
+## 🛡️ Error Handling
+
+StudyMate AI includes error handling to provide a better user experience.
+
+- **Empty Input:** Displays a message asking the user to enter content.
+- **Short Input:** Requests additional content when the input is too short.
+- **Missing or Invalid API Key:** Displays an appropriate authentication error.
+- **Network Errors:** Informs the user if the application cannot connect to the API.
+- **Rate Limits:** Displays a message when the API request limit is reached.
+- **Unexpected Errors:** Shows a friendly error message instead of exposing a Python traceback.
+
+---
+
+## 🧠 Prompt Engineering
+
+Prompt engineering is an important part of StudyMate AI.
+
+Each utility has its own prompt-building function in `prompts.py`. Instead of using one general prompt for every task, the application uses specific instructions tailored to each utility.
+
+The prompts define:
+
+- **Role:** The role the AI should perform, such as a tutor or writing assistant.
+- **Task:** The specific action the AI should complete.
+- **Input:** The student's content or question.
+- **Output Format:** The expected structure and presentation of the response.
+
+For example, the quiz-generation prompt requests exactly five multiple-choice questions, four options per question, and a separate answer key.
+
+This approach helps make the AI's responses more relevant to each task.
+
+---
+
+## 📚 Learning Outcomes
+
+Through this project, I gained practical experience with:
+
+- Python application development.
+- Building interactive web applications using Streamlit.
+- Integrating the Google Gemini API.
+- Using environment variables to protect API keys.
+- Writing task-specific prompts.
+- Implementing input validation and error handling.
+- Organizing a Python project into multiple files.
+- Using GitHub to manage and share project code.
+
+---
+
+## 🔮 Future Improvements
+
+Possible future enhancements include:
+
+- Uploading PDF and text files for note summarization.
+- Allowing users to customize quiz difficulty and question count.
+- Adding options to download summaries and quizzes.
+- Maintaining a history of previous responses.
+- Supporting multiple large language model providers.
+
+---
+
+## 📌 Project Scope
+
+StudyMate AI was developed as a beginner-level internship project.
+
+It is a simple, single-application system focused on four academic utilities. It uses the Google Gemini API to generate responses and does not require a separate backend server or database.
+
+The project does not currently implement Retrieval-Augmented Generation (RAG), vector databases, or AI agents.
+
+---
+
+## 👩‍💻 Developed By
+
+**Jegajothi K**  
+B.Tech – Information Technology  
+Manakula Vinayagar Institute of Technology  
+
+**Internship:** ShadowFox AI Engineer Internship  
+**Level:** Beginner  
+**Task:** Task 1 – StudyMate AI
+
+---
+
+## 📄 License
+
+This project was developed for educational and internship purposes.
